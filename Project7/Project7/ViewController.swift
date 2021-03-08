@@ -9,11 +9,14 @@ import UIKit
 
 class ViewController: UITableViewController {
     var petitions = [Petition]()
+    var filteredPetitions = [Petition]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "?", style: .plain, target: self, action: #selector(showCredits))
+
+        navigationItem.rightBarButtonItems?.append(UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchPetitions)))
 
         let urlString: String
 
@@ -43,6 +46,7 @@ class ViewController: UITableViewController {
         
         if let jsonPetitions = try? decoder.decode(Petitions.self, from: json) {
             petitions = jsonPetitions.results
+            filteredPetitions = petitions
             tableView.reloadData()
         }
         
@@ -54,13 +58,38 @@ class ViewController: UITableViewController {
         present(ac, animated: true)
     }
 
+    @objc func searchPetitions() {
+        let ac = UIAlertController(title: "Enter search word", message: nil, preferredStyle: .alert)
+        ac.addTextField()
+
+        let filterAction = UIAlertAction(title: "Search", style: .default) { [weak self, weak ac] action in
+            guard let word = ac?.textFields?[0].text else { return }
+            self?.filterPetitions(word.lowercased())
+        }
+
+        ac.addAction(filterAction)
+
+        present(ac, animated: true)
+    }
+
+    func filterPetitions(_ word: String) {
+        if word.isEmpty {
+            filteredPetitions = petitions
+        } else {
+            filteredPetitions = petitions.filter {
+                $0.body.lowercased().contains(word) || $0.title.lowercased().contains(word)
+            }
+        }
+        tableView.reloadData()
+    }
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return petitions.count
+        return filteredPetitions.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        let petition = petitions[indexPath.row]
+        let petition = filteredPetitions[indexPath.row]
         cell.textLabel?.text = petition.title
         cell.detailTextLabel?.text = petition.body
         return cell
@@ -68,7 +97,7 @@ class ViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = DetailViewController()
-        vc.detailItem = petitions[indexPath.row]
+        vc.detailItem = filteredPetitions[indexPath.row]
         navigationController?.pushViewController(vc, animated: true)
     }
 
