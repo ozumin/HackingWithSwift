@@ -12,9 +12,11 @@ class ViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "?", style: .plain, target: self, action: #selector(showCredits))
+
         let urlString: String
-            
+
         if navigationController?.tabBarItem.tag == 0 {
             urlString = "https://www.hackingwithswift.com/samples/petitions-1.json"
         } else {
@@ -46,6 +48,12 @@ class ViewController: UITableViewController {
         
     }
     
+    @objc func showCredits() {
+        let ac = UIAlertController(title: "Data came from We The People API of the Whitehouse", message: nil, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .default))
+        present(ac, animated: true)
+    }
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return petitions.count
     }
