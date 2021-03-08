@@ -21,10 +21,18 @@ class DetailViewController: UIViewController {
         <html>
         <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <style> body { font-size: 150%; } </style>
+        <style> body { font-size: 120%; }
+            .container { margin-right: 5%; margin-left: 5%; }
+        </style>
         </head>
         <body>
-        \(detailItem.body)
+            <div class="container">
+                <h2>
+                    \(detailItem.title)
+                </h2>
+                <br>
+                \(detailItem.body)
+            </div>
         </body>
         </html>
         """
