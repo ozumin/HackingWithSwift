@@ -153,6 +153,10 @@ class ViewController: UIViewController {
                 ac.addAction(UIAlertAction(title: "Let's go!", style: .default, handler: levelUp))
                 present(ac, animated: true)
             }
+        } else {
+            let ac = UIAlertController(title: "Wrong answer", message: nil, preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default, handler: clearAfterWrongSubmittion))
+            present(ac, animated: true)
         }
     }
 
@@ -167,7 +171,7 @@ class ViewController: UIViewController {
         }
     }
 
-    @objc func clearTapped(_ sender: UIButton) {
+    func clearSelected() {
         currentAnswer.text = ""
 
         for button in activatedButtons {
@@ -175,6 +179,14 @@ class ViewController: UIViewController {
         }
 
         activatedButtons.removeAll()
+    }
+
+    func clearAfterWrongSubmittion(action: UIAlertAction) {
+        clearSelected()
+    }
+
+    @objc func clearTapped(_ sender: UIButton) {
+        clearSelected()
     }
 
     func loadLevel() {
