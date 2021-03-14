@@ -79,14 +79,18 @@ class ViewController: UITableViewController {
     }
 
     func filterPetitions(_ word: String) {
-        if word.isEmpty {
-            filteredPetitions = petitions
-        } else {
-            filteredPetitions = petitions.filter {
-                $0.body.lowercased().contains(word) || $0.title.lowercased().contains(word)
+        DispatchQueue.global(qos: .userInitiated).async {
+            if word.isEmpty {
+                self.filteredPetitions = self.petitions
+            } else {
+                self.filteredPetitions = self.petitions.filter {
+                    $0.body.lowercased().contains(word) || $0.title.lowercased().contains(word)
+                }
             }
         }
-        tableView.reloadData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
