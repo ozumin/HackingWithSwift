@@ -13,6 +13,7 @@
 		8391EBE52604EC1600D0D99E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8391EBE32604EC1600D0D99E /* Main.storyboard */; };
 		8391EBE72604EC1700D0D99E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8391EBE62604EC1700D0D99E /* Assets.xcassets */; };
 		8391EBEA2604EC1700D0D99E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8391EBE82604EC1700D0D99E /* LaunchScreen.storyboard */; };
+		8391EBF32604EDA900D0D99E /* PersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8391EBF22604EDA900D0D99E /* PersonCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		8391EBE62604EC1700D0D99E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8391EBE92604EC1700D0D99E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8391EBEB2604EC1700D0D99E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8391EBF22604EDA900D0D99E /* PersonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				8391EBDF2604EC1600D0D99E /* SceneDelegate.swift */,
 				8391EBE12604EC1600D0D99E /* ViewController.swift */,
 				8391EBE32604EC1600D0D99E /* Main.storyboard */,
+				8391EBF22604EDA900D0D99E /* PersonCell.swift */,
 				8391EBE62604EC1700D0D99E /* Assets.xcassets */,
 				8391EBE82604EC1700D0D99E /* LaunchScreen.storyboard */,
 				8391EBEB2604EC1700D0D99E /* Info.plist */,
@@ -139,6 +142,7 @@
 			files = (
 				8391EBE22604EC1600D0D99E /* ViewController.swift in Sources */,
 				8391EBDE2604EC1600D0D99E /* AppDelegate.swift in Sources */,
+				8391EBF32604EDA900D0D99E /* PersonCell.swift in Sources */,
 				8391EBE02604EC1600D0D99E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
