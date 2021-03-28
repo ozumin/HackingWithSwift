@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		83A6E0FC2610BDEC005AB62A /* FireParticles.sks in Resources */ = {isa = PBXBuildFile; fileRef = 83A6E0FB2610BDEC005AB62A /* FireParticles.sks */; };
 		83DD8F29260B8613001FFD9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DD8F28260B8613001FFD9C /* AppDelegate.swift */; };
 		83DD8F2B260B8613001FFD9C /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 83DD8F2A260B8613001FFD9C /* GameScene.sks */; };
 		83DD8F2F260B8613001FFD9C /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DD8F2E260B8613001FFD9C /* GameScene.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		83A6E0FB2610BDEC005AB62A /* FireParticles.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = FireParticles.sks; path = "../../HackingWithSwift/Classic/project11-files/Content/FireParticles.sks"; sourceTree = "<group>"; };
 		83DD8F25260B8613001FFD9C /* Project11.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project11.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83DD8F28260B8613001FFD9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		83DD8F2A260B8613001FFD9C /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				83DD8F32260B8613001FFD9C /* Main.storyboard */,
 				83DD8F35260B8614001FFD9C /* Assets.xcassets */,
 				83DD8F37260B8614001FFD9C /* Info.plist */,
+				83A6E0FB2610BDEC005AB62A /* FireParticles.sks */,
 			);
 			path = Project11;
 			sourceTree = "<group>";
@@ -125,6 +128,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83DD8F34260B8613001FFD9C /* Main.storyboard in Resources */,
+				83A6E0FC2610BDEC005AB62A /* FireParticles.sks in Resources */,
 				83DD8F2B260B8613001FFD9C /* GameScene.sks in Resources */,
 				83DD8F36260B8614001FFD9C /* Assets.xcassets in Resources */,
 			);
