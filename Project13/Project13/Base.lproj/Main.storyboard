@@ -67,24 +67,44 @@
                                     <action selector="save:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rxq-NF-xPk"/>
                                 </connections>
                             </button>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="dNe-cH-8b4">
+                                <rect key="frame" x="91" y="727" width="305" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="29" id="7JL-MC-Sjc"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="radiusChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="LRL-dU-3Lk"/>
+                                </connections>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Radius" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zg9-6k-GtY">
+                                <rect key="frame" x="20" y="731" width="52" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="vSW-tP-apH" firstAttribute="leading" secondItem="BiX-iV-ydc" secondAttribute="trailing" constant="8" id="9Uu-Iq-yYM"/>
-                            <constraint firstItem="BiX-iV-ydc" firstAttribute="centerY" secondItem="vSW-tP-apH" secondAttribute="centerY" id="CS4-b5-wxY"/>
+                            <constraint firstItem="vSW-tP-apH" firstAttribute="centerY" secondItem="BiX-iV-ydc" secondAttribute="centerY" id="73Q-JI-oet"/>
+                            <constraint firstItem="vSW-tP-apH" firstAttribute="leading" secondItem="BiX-iV-ydc" secondAttribute="trailing" constant="8" id="DD3-t4-u8q"/>
+                            <constraint firstItem="vSW-tP-apH" firstAttribute="leading" secondItem="dNe-cH-8b4" secondAttribute="leading" id="ESg-uw-3Oh"/>
                             <constraint firstItem="K7L-zO-xaq" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="EX6-iz-714"/>
-                            <constraint firstItem="vSW-tP-apH" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="FDQ-Sh-cAG"/>
-                            <constraint firstItem="vSW-tP-apH" firstAttribute="top" secondItem="K7L-zO-xaq" secondAttribute="bottom" constant="26" id="Jlu-dx-zNN"/>
+                            <constraint firstItem="vSW-tP-apH" firstAttribute="top" secondItem="dNe-cH-8b4" secondAttribute="bottom" constant="5" id="GwB-ZY-KGu"/>
                             <constraint firstItem="geA-NW-2uW" firstAttribute="top" secondItem="BiX-iV-ydc" secondAttribute="bottom" constant="12" id="LxM-9m-r5w"/>
                             <constraint firstItem="K7L-zO-xaq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="M3P-lv-MnP"/>
-                            <constraint firstItem="geA-NW-2uW" firstAttribute="top" secondItem="vSW-tP-apH" secondAttribute="bottom" constant="8" id="TfS-dP-TdL"/>
+                            <constraint firstItem="dNe-cH-8b4" firstAttribute="leading" secondItem="zg9-6k-GtY" secondAttribute="trailing" constant="21" id="McS-ZI-ut4"/>
+                            <constraint firstItem="vSW-tP-apH" firstAttribute="trailing" secondItem="dNe-cH-8b4" secondAttribute="trailing" id="Wr8-nh-8gN"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="geA-NW-2uW" secondAttribute="bottom" constant="20" id="cSf-tH-93i"/>
                             <constraint firstItem="K7L-zO-xaq" firstAttribute="leading" secondItem="BiX-iV-ydc" secondAttribute="leading" id="dx3-rX-rrV"/>
-                            <constraint firstItem="vSW-tP-apH" firstAttribute="trailing" secondItem="Jx2-cx-L5J" secondAttribute="trailing" id="gBl-nE-jtV"/>
                             <constraint firstItem="K7L-zO-xaq" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="22" id="gvr-Ry-WKo"/>
                             <constraint firstItem="geA-NW-2uW" firstAttribute="top" secondItem="Jx2-cx-L5J" secondAttribute="top" id="hDQ-Jd-JFo"/>
                             <constraint firstItem="geA-NW-2uW" firstAttribute="baseline" secondItem="Jx2-cx-L5J" secondAttribute="firstBaseline" id="hSl-Tg-TKO"/>
+                            <constraint firstItem="dNe-cH-8b4" firstAttribute="top" secondItem="K7L-zO-xaq" secondAttribute="bottom" constant="27" id="hoF-Rm-jyG"/>
+                            <constraint firstItem="vSW-tP-apH" firstAttribute="trailing" secondItem="Jx2-cx-L5J" secondAttribute="trailing" id="hqa-s6-oeX"/>
+                            <constraint firstItem="geA-NW-2uW" firstAttribute="top" secondItem="vSW-tP-apH" secondAttribute="bottom" constant="8" id="l9p-Qn-VSL"/>
+                            <constraint firstItem="vSW-tP-apH" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="pgd-am-qXG"/>
+                            <constraint firstItem="dNe-cH-8b4" firstAttribute="centerY" secondItem="zg9-6k-GtY" secondAttribute="centerY" id="q5L-gx-arA"/>
                             <constraint firstItem="BiX-iV-ydc" firstAttribute="leading" secondItem="geA-NW-2uW" secondAttribute="leading" id="rlF-14-pVi"/>
                         </constraints>
                     </view>
@@ -93,6 +113,7 @@
                         <outlet property="changeFilter" destination="geA-NW-2uW" id="4sZ-nB-gWo"/>
                         <outlet property="imageView" destination="A4O-sx-Hpl" id="ZI9-gB-h5k"/>
                         <outlet property="intensity" destination="vSW-tP-apH" id="Jka-v7-J7K"/>
+                        <outlet property="radius" destination="dNe-cH-8b4" id="0qz-0M-oQm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
