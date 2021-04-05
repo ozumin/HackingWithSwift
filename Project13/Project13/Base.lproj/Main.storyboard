@@ -11,7 +11,6 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Project13" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -91,10 +90,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="mEr-gr-Rjc"/>
                     <connections>
+                        <outlet property="changeFilter" destination="geA-NW-2uW" id="4sZ-nB-gWo"/>
                         <outlet property="imageView" destination="A4O-sx-Hpl" id="ZI9-gB-h5k"/>
                         <outlet property="intensity" destination="vSW-tP-apH" id="Jka-v7-J7K"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="928.98550724637687" y="88.392857142857139"/>
         </scene>
