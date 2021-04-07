@@ -16,6 +16,7 @@
 		835FA4EE261C956900EB52B0 /* whack.caf in Resources */ = {isa = PBXBuildFile; fileRef = 835FA4EC261C956900EB52B0 /* whack.caf */; };
 		835FA4EF261C956900EB52B0 /* whackBad.caf in Resources */ = {isa = PBXBuildFile; fileRef = 835FA4ED261C956900EB52B0 /* whackBad.caf */; };
 		835FA4F2261C96FE00EB52B0 /* WhackSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835FA4F1261C96FE00EB52B0 /* WhackSlot.swift */; };
+		83BBA14D261DDEED00D9BCAB /* gameOver.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 83BBA14C261DDEED00D9BCAB /* gameOver.m4a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		835FA4EC261C956900EB52B0 /* whack.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = whack.caf; path = "../../HackingWithSwift/Classic/project14-files/Content/whack.caf"; sourceTree = "<group>"; };
 		835FA4ED261C956900EB52B0 /* whackBad.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = whackBad.caf; path = "../../HackingWithSwift/Classic/project14-files/Content/whackBad.caf"; sourceTree = "<group>"; };
 		835FA4F1261C96FE00EB52B0 /* WhackSlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhackSlot.swift; sourceTree = "<group>"; };
+		83BBA14C261DDEED00D9BCAB /* gameOver.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = gameOver.m4a; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 				835FA4E4261C94AA00EB52B0 /* Info.plist */,
 				835FA4EC261C956900EB52B0 /* whack.caf */,
 				835FA4ED261C956900EB52B0 /* whackBad.caf */,
+				83BBA14C261DDEED00D9BCAB /* gameOver.m4a */,
 			);
 			path = Project14;
 			sourceTree = "<group>";
@@ -137,6 +140,7 @@
 				835FA4E1261C94A900EB52B0 /* Main.storyboard in Resources */,
 				835FA4D8261C94A900EB52B0 /* GameScene.sks in Resources */,
 				835FA4E3261C94AA00EB52B0 /* Assets.xcassets in Resources */,
+				83BBA14D261DDEED00D9BCAB /* gameOver.m4a in Resources */,
 				835FA4EE261C956900EB52B0 /* whack.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
