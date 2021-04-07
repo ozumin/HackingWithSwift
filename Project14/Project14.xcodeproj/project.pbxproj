@@ -17,6 +17,8 @@
 		835FA4EF261C956900EB52B0 /* whackBad.caf in Resources */ = {isa = PBXBuildFile; fileRef = 835FA4ED261C956900EB52B0 /* whackBad.caf */; };
 		835FA4F2261C96FE00EB52B0 /* WhackSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835FA4F1261C96FE00EB52B0 /* WhackSlot.swift */; };
 		83BBA14D261DDEED00D9BCAB /* gameOver.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 83BBA14C261DDEED00D9BCAB /* gameOver.m4a */; };
+		83BBA150261DE10A00D9BCAB /* smokeParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 83BBA14F261DE10A00D9BCAB /* smokeParticle.sks */; };
+		83BBA153261DE48E00D9BCAB /* mudParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 83BBA152261DE48E00D9BCAB /* mudParticle.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		835FA4ED261C956900EB52B0 /* whackBad.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = whackBad.caf; path = "../../HackingWithSwift/Classic/project14-files/Content/whackBad.caf"; sourceTree = "<group>"; };
 		835FA4F1261C96FE00EB52B0 /* WhackSlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhackSlot.swift; sourceTree = "<group>"; };
 		83BBA14C261DDEED00D9BCAB /* gameOver.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = gameOver.m4a; sourceTree = SOURCE_ROOT; };
+		83BBA14F261DE10A00D9BCAB /* smokeParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = smokeParticle.sks; sourceTree = "<group>"; };
+		83BBA152261DE48E00D9BCAB /* mudParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = mudParticle.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,7 +71,9 @@
 				835FA4D5261C94A900EB52B0 /* AppDelegate.swift */,
 				835FA4D7261C94A900EB52B0 /* GameScene.sks */,
 				835FA4DB261C94A900EB52B0 /* GameScene.swift */,
+				83BBA14F261DE10A00D9BCAB /* smokeParticle.sks */,
 				835FA4F1261C96FE00EB52B0 /* WhackSlot.swift */,
+				83BBA152261DE48E00D9BCAB /* mudParticle.sks */,
 				835FA4DD261C94A900EB52B0 /* GameViewController.swift */,
 				835FA4DF261C94A900EB52B0 /* Main.storyboard */,
 				835FA4E2261C94AA00EB52B0 /* Assets.xcassets */,
@@ -136,11 +142,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83BBA153261DE48E00D9BCAB /* mudParticle.sks in Resources */,
 				835FA4EF261C956900EB52B0 /* whackBad.caf in Resources */,
 				835FA4E1261C94A900EB52B0 /* Main.storyboard in Resources */,
 				835FA4D8261C94A900EB52B0 /* GameScene.sks in Resources */,
 				835FA4E3261C94AA00EB52B0 /* Assets.xcassets in Resources */,
 				83BBA14D261DDEED00D9BCAB /* gameOver.m4a in Resources */,
+				83BBA150261DE10A00D9BCAB /* smokeParticle.sks in Resources */,
 				835FA4EE261C956900EB52B0 /* whack.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
