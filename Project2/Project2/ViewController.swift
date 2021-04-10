@@ -51,6 +51,13 @@ class ViewController: UIViewController {
         var title: String
         var wrong: Bool = false
 
+        UIView.animate(withDuration: 0.3){
+            sender.transform = CGAffineTransform(translationX: 0, y: -10)
+        }
+        UIView.animate(withDuration: 0.3, delay: 0.3, usingSpringWithDamping: 0.5, initialSpringVelocity: 5){
+            sender.transform = .identity
+        }
+
         questions += 1
         if sender.tag == correctAnswer {
             title = "Correct"
