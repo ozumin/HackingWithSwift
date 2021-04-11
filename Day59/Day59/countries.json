@@ -1,0 +1,14 @@
+{
+    "countries": [
+        {
+            "name": "Japan",
+            "population": 300,
+            "area": 900
+        },
+        {
+            "name": "US",
+            "population": 900,
+            "area": 10000
+        }
+    ]
+}
