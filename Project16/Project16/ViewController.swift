@@ -40,7 +40,12 @@ class ViewController: UIViewController, MKMapViewDelegate {
             annotationView?.annotation = annotation
         }
 
-        return annotationView
+        if let view = annotationView as? MKPinAnnotationView {
+            view.pinTintColor = UIColor(red: 0.5, green: 0.5, blue: 0, alpha: 1)
+            return view
+        } else {
+            return nil
+        }
     }
 
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
