@@ -10,6 +10,7 @@ import MapKit
 
 class ViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet var mapView: MKMapView!
+    let mapTypes = ["Standard", "Satellite", "Hybrid", "SatelliteFlyover", "HybridFlyover", "MutedStandard"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +22,30 @@ class ViewController: UIViewController, MKMapViewDelegate {
         let washington = Capital(title: "Washington DC", coordinate: CLLocationCoordinate2D(latitude: 38.895111, longitude: -77.036667), info: "Named after George himself.")
 
         mapView.addAnnotations([london, oslo, paris, rome, washington])
+
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(pickMapType))
+    }
+
+    @objc func pickMapType() {
+        let ac = UIAlertController(title: "Pick Map Type", message: nil, preferredStyle: .alert)
+        for type in mapTypes {
+            ac.addAction(UIAlertAction(title: type, style: .default, handler: setMapType))
+        }
+        present(ac, animated: true)
+    }
+
+    func setMapType(action: UIAlertAction) {
+        guard let actionTitle = action.title else { return }
+
+        switch actionTitle {
+        case "Standard": mapView.mapType = .standard
+        case "Satellite": mapView.mapType = .satellite
+        case "Hybrid": mapView.mapType = .hybrid
+        case "SatelliteFlyover": mapView.mapType = .satelliteFlyover
+        case "HybridFlyover": mapView.mapType = .hybridFlyover
+        case "MutedStandard": mapView.mapType = .mutedStandard
+        default: mapView.mapType = .standard
+        }
     }
 
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
