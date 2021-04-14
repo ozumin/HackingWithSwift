@@ -7,8 +7,9 @@
 
 import UIKit
 import MapKit
+import WebKit
 
-class ViewController: UIViewController, MKMapViewDelegate {
+class ViewController: UIViewController, MKMapViewDelegate{
     @IBOutlet var mapView: MKMapView!
     let mapTypes = ["Standard", "Satellite", "Hybrid", "SatelliteFlyover", "HybridFlyover", "MutedStandard"]
     
@@ -79,7 +80,14 @@ class ViewController: UIViewController, MKMapViewDelegate {
         let placeInfo = capital.info
 
         let ac = UIAlertController(title: placeName, message: placeInfo, preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "OK", style: .default))
+        ac.addAction(UIAlertAction(title: "See Wiki", style: .default) { [weak self] _ in
+            guard let placeNameTitle = placeName else { return }
+            let path = "https://en.wikipedia.org/wiki/" + placeNameTitle
+            let url = URL(string: path)
+            let wc = WebViewController()
+            wc.url = url
+            self?.navigationController?.pushViewController(wc, animated: true)
+        })
         present(ac, animated: true)
     }
 
