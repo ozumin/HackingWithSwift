@@ -17,6 +17,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var gameTimer: Timer?
     var isGameOver = false
     var invalidTouch = false
+    var enemyNum = 0
+    var timeInterval: Double = 1
 
     var score = 0 {
         didSet {
@@ -49,7 +51,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         physicsWorld.gravity = .zero
         physicsWorld.contactDelegate = self
 
-        gameTimer = Timer.scheduledTimer(timeInterval: 0.35, target: self, selector: #selector(createEnemy), userInfo: nil, repeats: true)
+        gameTimer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(createEnemy), userInfo: nil, repeats: true)
     }
 
     @objc func createEnemy() {
@@ -65,6 +67,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         sprite.physicsBody?.angularVelocity = 5
         sprite.physicsBody?.linearDamping = 0
         sprite.physicsBody?.angularDamping = 0
+
+        enemyNum += 1
+        if enemyNum >= 20 {
+            enemyNum = 0
+            timeInterval -= 0.1
+            gameTimer?.invalidate()
+            gameTimer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(createEnemy), userInfo: nil, repeats: true)
+        }
     }
 
     override func update(_ currentTime: TimeInterval) {
