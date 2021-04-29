@@ -15,6 +15,7 @@ class ActionViewController: UIViewController {
     var pageURL = ""
 
     let scripts = [#"alert("Alert1");"#, #"alert("Alert2");"#]
+    let defaults = UserDefaults.standard
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +50,7 @@ class ActionViewController: UIViewController {
         let customJavaScript = NSItemProvider(item: webDictionary, typeIdentifier: kUTTypePropertyList as String)
         item.attachments = [customJavaScript]
         extensionContext?.completeRequest(returningItems: [item])
+        defaults.set(script.text, forKey: self.pageTitle)
     }
 
     @objc func adjustForKeyboard(notification: Notification) {
