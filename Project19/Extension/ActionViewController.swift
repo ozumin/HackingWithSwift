@@ -14,10 +14,13 @@ class ActionViewController: UIViewController {
     var pageTitle = ""
     var pageURL = ""
 
+    let scripts = [#"alert("Alert1");"#, #"alert("Alert2");"#]
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Choose", style: .plain, target: self, action: #selector(chooseScript))
 
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
@@ -63,5 +66,21 @@ class ActionViewController: UIViewController {
 
         let selectedRange = script.selectedRange
         script.scrollRangeToVisible(selectedRange)
+    }
+
+    @objc func chooseScript() {
+        let ac = UIAlertController(title: "Choose script", message: "", preferredStyle: .alert)
+        for i in 1...self.scripts.count {
+            ac.addAction(UIAlertAction(title: String(i), style: .default){ [unowned self] _ in
+                let item = NSExtensionItem()
+                let argument: NSDictionary = ["customJavaScript": scripts[i]]
+                let webDictionary: NSDictionary = [NSExtensionJavaScriptFinalizeArgumentKey: argument]
+                let customJavaScript = NSItemProvider(item: webDictionary, typeIdentifier: kUTTypePropertyList as String)
+                item.attachments = [customJavaScript]
+                extensionContext?.completeRequest(returningItems: [item])
+            })
+        }
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        present(ac, animated: true)
     }
 }
