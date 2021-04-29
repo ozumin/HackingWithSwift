@@ -27,6 +27,8 @@ class ViewController: UIViewController {
         let dict = ["Name": "Paul", "Country": "UK"]
         defaults.set(dict, forKey: "SavedDictionary")
 
+        defaults.set(Pet(name: "aa", type: "aa"), forKey: "Pet")
+
         let savedInteger = defaults.integer(forKey: "Age")
         let savedBoolean = defaults.bool(forKey: "UseFaceID")
 
@@ -37,3 +39,7 @@ class ViewController: UIViewController {
 
 }
 
+struct Pet {
+    var name: String
+    var type: String
+}

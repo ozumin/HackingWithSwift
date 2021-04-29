@@ -16,6 +16,7 @@ class ActionViewController: UIViewController {
 
     let scripts = [#"alert("Alert1");"#, #"alert("Alert2");"#]
     let defaults = UserDefaults.standard
+    var savedScripts = Scripts(siteURLString: "", scripts: [])
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,20 +38,58 @@ class ActionViewController: UIViewController {
 
                     DispatchQueue.main.async {
                         self?.title = self?.pageTitle
+                        self?.decodeScripts()
                     }
                 }
             }
         }
     }
 
+    func decodeScripts() {
+        let decoder = JSONDecoder()
+        if let json = defaults.data(forKey: self.pageURL),
+           let savedScripts = try? decoder.decode(Scripts.self, from: json) {
+            self.savedScripts = savedScripts
+        }
+    }
+
     @IBAction func done() {
-        let item = NSExtensionItem()
-        let argument: NSDictionary = ["customJavaScript": script.text]
-        let webDictionary: NSDictionary = [NSExtensionJavaScriptFinalizeArgumentKey: argument]
-        let customJavaScript = NSItemProvider(item: webDictionary, typeIdentifier: kUTTypePropertyList as String)
-        item.attachments = [customJavaScript]
-        extensionContext?.completeRequest(returningItems: [item])
-        defaults.set(script.text, forKey: self.pageTitle)
+
+        self.decodeScripts()
+
+        let ac = UIAlertController(title: "Name", message: nil, preferredStyle: .alert)
+        ac.addTextField()
+
+        let saveAction = UIAlertAction(title: "OK", style: .default) { [weak self, weak ac] action in
+            guard let word = ac?.textFields?[0].text else { return }
+            self?.saveScript(word)
+            self?.moveToTableView()
+        }
+        ac.addAction(saveAction)
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel){ [weak self] _ in
+            self?.moveToTableView()
+        })
+        present(ac, animated: true)
+    }
+
+    func saveScript(_ name: String) {
+        do {
+            if let text = self.script.text {
+                self.savedScripts.scripts.append(Script(name: name, script: text))
+                let encoder = JSONEncoder()
+                let json = try encoder.encode(self.savedScripts)
+                defaults.set(json, forKey: self.pageURL)
+            }
+        } catch {
+            return
+        }
+    }
+
+    func moveToTableView() {
+        if let vc = storyboard?.instantiateViewController(identifier: "Table") as? TableViewController {
+            vc.scripts = self.savedScripts
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
 
     @objc func adjustForKeyboard(notification: Notification) {
@@ -72,7 +111,7 @@ class ActionViewController: UIViewController {
 
     @objc func chooseScript() {
         let ac = UIAlertController(title: "Choose script", message: "", preferredStyle: .alert)
-        for i in 1...self.scripts.count {
+        for i in 0..<self.scripts.count {
             ac.addAction(UIAlertAction(title: String(i), style: .default){ [unowned self] _ in
                 let item = NSExtensionItem()
                 let argument: NSDictionary = ["customJavaScript": scripts[i]]

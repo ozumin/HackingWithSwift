@@ -18,6 +18,9 @@
 		8344F0C526356D1B00CA8301 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8344F0C326356D1B00CA8301 /* MainInterface.storyboard */; };
 		8344F0C926356D1B00CA8301 /* Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8344F0BD26356D1B00CA8301 /* Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8344F0D126356F9800CA8301 /* Action.js in Resources */ = {isa = PBXBuildFile; fileRef = 8344F0D026356F9800CA8301 /* Action.js */; };
+		83811F7E263AA50700DA5FF6 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83811F7D263AA50700DA5FF6 /* TableViewController.swift */; };
+		83811F82263AB48F00DA5FF6 /* Script.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83811F81263AB48F00DA5FF6 /* Script.swift */; };
+		83811F86263AB4C300DA5FF6 /* Scripts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83811F85263AB4C300DA5FF6 /* Scripts.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +62,9 @@
 		8344F0C426356D1B00CA8301 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		8344F0C626356D1B00CA8301 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8344F0D026356F9800CA8301 /* Action.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Action.js; sourceTree = "<group>"; };
+		83811F7D263AA50700DA5FF6 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		83811F81263AB48F00DA5FF6 /* Script.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Script.swift; sourceTree = "<group>"; };
+		83811F85263AB4C300DA5FF6 /* Scripts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scripts.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +88,8 @@
 		8344F0982635653F00CA8301 = {
 			isa = PBXGroup;
 			children = (
+				83811F81263AB48F00DA5FF6 /* Script.swift */,
+				83811F85263AB4C300DA5FF6 /* Scripts.swift */,
 				8344F0A32635653F00CA8301 /* Project19 */,
 				8344F0BE26356D1B00CA8301 /* Extension */,
 				8344F0A22635653F00CA8301 /* Products */,
@@ -116,6 +124,7 @@
 			children = (
 				8344F0BF26356D1B00CA8301 /* Media.xcassets */,
 				8344F0C126356D1B00CA8301 /* ActionViewController.swift */,
+				83811F7D263AA50700DA5FF6 /* TableViewController.swift */,
 				8344F0C326356D1B00CA8301 /* MainInterface.storyboard */,
 				8344F0C626356D1B00CA8301 /* Info.plist */,
 				8344F0D026356F9800CA8301 /* Action.js */,
@@ -236,7 +245,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83811F86263AB4C300DA5FF6 /* Scripts.swift in Sources */,
 				8344F0C226356D1B00CA8301 /* ActionViewController.swift in Sources */,
+				83811F82263AB48F00DA5FF6 /* Script.swift in Sources */,
+				83811F7E263AA50700DA5FF6 /* TableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
