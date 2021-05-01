@@ -161,12 +161,11 @@ class GameScene: SKScene {
         }
     }
 
-    func explode(firework: SKNode) {
+    func explode(firework: SKNode, position: CGPoint) {
         if let emitter = SKEmitterNode(fileNamed: "explode"){
-            emitter.position = firework.position
+            emitter.position = position
             addChild(emitter)
         }
-        firework.removeFromParent()
     }
 
     func explodeFireworks() {
@@ -176,7 +175,8 @@ class GameScene: SKScene {
             guard let firework = fireworkContainer.children.first as? SKSpriteNode else { continue }
 
             if firework.name == "selected" {
-                explode(firework: firework)
+                self.explode(firework: firework, position: fireworkContainer.position)
+                fireworkContainer.removeFromParent()
                 fireworks.remove(at: index)
                 numExploded += 1
             }
