@@ -22,6 +22,9 @@ class GameScene: SKScene {
             gameScore.text = "Score: \(score)"
         }
     }
+
+    var numLaunched = 0
+    let numMaxLaunch = 5 * 5
     
     override func didMove(to view: SKView) {
         let background = SKSpriteNode(imageNamed: "background")
@@ -41,37 +44,42 @@ class GameScene: SKScene {
     }
 
     func createFirework(xMovement: CGFloat, x: Int, y: Int) {
-        let node = SKNode()
-        node.position = CGPoint(x: x, y: y)
+        if numLaunched < numMaxLaunch {
+            let node = SKNode()
+            node.position = CGPoint(x: x, y: y)
 
-        let firework = SKSpriteNode(imageNamed: "rocket")
-        firework.colorBlendFactor = 1
-        firework.name = "firework"
-        node.addChild(firework)
+            let firework = SKSpriteNode(imageNamed: "rocket")
+            firework.colorBlendFactor = 1
+            firework.name = "firework"
+            node.addChild(firework)
 
-        switch Int.random(in: 0...2) {
-        case 0:
-            firework.color = .cyan
-        case 1:
-            firework.color = .green
-        default:
-            firework.color = .red
+            switch Int.random(in: 0...2) {
+            case 0:
+                firework.color = .cyan
+            case 1:
+                firework.color = .green
+            default:
+                firework.color = .red
+            }
+
+            let path = UIBezierPath()
+            path.move(to: .zero)
+            path.addLine(to: CGPoint(x: xMovement, y: 1000))
+
+            let move = SKAction.follow(path.cgPath, speed: 200)
+            node.run(move)
+
+            if let emitter = SKEmitterNode(fileNamed: "fuse") {
+                emitter.position = CGPoint(x: 0, y: -22)
+                node.addChild(emitter)
+            }
+
+            fireworks.append(node)
+            addChild(node)
+            numLaunched += 1
+        } else {
+            gameTimer?.invalidate()
         }
-
-        let path = UIBezierPath()
-        path.move(to: .zero)
-        path.addLine(to: CGPoint(x: xMovement, y: 1000))
-
-        let move = SKAction.follow(path.cgPath, speed: 200)
-        node.run(move)
-
-        if let emitter = SKEmitterNode(fileNamed: "fuse") {
-            emitter.position = CGPoint(x: 0, y: -22)
-            node.addChild(emitter)
-        }
-
-        fireworks.append(node)
-        addChild(node)
     }
 
     @objc func launchFireworks() {
