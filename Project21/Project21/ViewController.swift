@@ -9,6 +9,7 @@ import UserNotifications
 import UIKit
 
 class ViewController: UIViewController, UNUserNotificationCenterDelegate {
+    @IBOutlet var label: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,8 +73,10 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
             case UNNotificationDefaultActionIdentifier:
                 // the user swiped to unlock
                 print("Default identifier")
+                self.label.text = "Default"
             case "show":
                 print("Show more information")
+                self.label.text = "Show"
             default:
                 break
             }
