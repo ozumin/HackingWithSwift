@@ -5,9 +5,10 @@
 //  Created by Mizuo Nagayama on 2021/02/16.
 //
 
+import UserNotifications
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UNUserNotificationCenterDelegate {
     @IBOutlet var button1: UIButton!
     @IBOutlet var button2: UIButton!
     @IBOutlet var button3: UIButton!
@@ -33,6 +34,15 @@ class ViewController: UIViewController {
         askQustion()
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Score", style: .plain, target: self, action: #selector(scoreButtonTapped))
+
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
+            if granted {
+                print("yay")
+            } else {
+                print("D'oh!")
+            }
+        }
     }
 
     func askQustion(action: UIAlertAction! = nil) {
@@ -94,6 +104,44 @@ class ViewController: UIViewController {
 
     @objc func dismissOnTapOutside(){
        self.dismiss(animated: true, completion: nil)
+    }
+
+    func scheduleLocal() {
+        registerCategories()
+
+        let center = UNUserNotificationCenter.current()
+        center.removeAllDeliveredNotifications()
+
+        let content = UNMutableNotificationContent()
+        content.title = "Late wake up call"
+        content.body = "The early bird catches the worm, but the second mouse gets the cheese."
+        content.categoryIdentifier = "alarm"
+        content.userInfo = ["customData": "fizzbuzz"]
+        content.sound = .default
+
+        var dateComponents = DateComponents()
+        let today = Calendar.current.dateComponents([], from: Date())
+        for i in 1...6 {
+            dateComponents.day = today.day ?? 0 + i
+            dateComponents.hour = 10
+            dateComponents.minute = 30
+    //        let trigger =  UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5 + Double(i), repeats: false) // This code is to check
+
+            let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+            center.add(request)
+        }
+    }
+
+    func registerCategories() {
+        let center = UNUserNotificationCenter.current()
+        center.delegate = self // after the notification we come back to this viewcontroller
+
+        let show = UNNotificationAction(identifier: "show", title: "Play now", options: .foreground) // foreground: launch app
+
+        let category = UNNotificationCategory(identifier: "alarm", actions: [show], intentIdentifiers: [], options: [])
+
+        center.setNotificationCategories([category])
     }
 }
 
