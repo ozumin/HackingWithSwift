@@ -57,8 +57,9 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
         center.delegate = self // after the notification we come back to this viewcontroller
 
         let show = UNNotificationAction(identifier: "show", title: "Tell me more", options: .foreground) // foreground: launch app
+        let remind = UNNotificationAction(identifier: "remind", title: "Remind me later", options: .destructive)
 
-        let category = UNNotificationCategory(identifier: "alarm", actions: [show], intentIdentifiers: [], options: [])
+        let category = UNNotificationCategory(identifier: "alarm", actions: [show, remind], intentIdentifiers: [], options: [])
 
         center.setNotificationCategories([category])
     }
@@ -77,6 +78,9 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
             case "show":
                 print("Show more information")
                 self.label.text = "Show"
+            case "remind":
+                print("Remind me later")
+                self.scheduleLocal()
             default:
                 break
             }
