@@ -14,6 +14,11 @@ class TableViewController: UITableViewController {
         super.viewDidLoad()
 
         memos = [Memo(title: "aa", body: "nnn")]
+        self.loadData()
+
+        let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addMemo))
+        toolbarItems = [add]
+        navigationController?.isToolbarHidden = false
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -28,13 +33,36 @@ class TableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return self.memos.count
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let vc = storyboard?.instantiateViewController(identifier: "Detail") as? DetailViewController else { return }
-        vc.memo = memos[indexPath.row]
+        vc.memos = self.memos
+        vc.index = indexPath.row
+        navigationController?.pushViewController(vc, animated: true)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        self.loadData()
+    }
+
+    func loadData() {
+        let defaults = UserDefaults.standard
+        if let savedMemos = defaults.object(forKey: "memos") as? Data {
+            let jsonDecoder = JSONDecoder()
+            do {
+                self.memos = try jsonDecoder.decode([Memo].self, from: savedMemos)
+            } catch {
+                print("Failed to load memos.")
+            }
+        }
+        tableView.reloadData()
+    }
+
+    @objc func addMemo() {
+        guard let vc = storyboard?.instantiateViewController(identifier: "Detail") as? DetailViewController else { return }
+        vc.memos = self.memos
         navigationController?.pushViewController(vc, animated: true)
     }
 }
-
