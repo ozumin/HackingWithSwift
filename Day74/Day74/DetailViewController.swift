@@ -21,8 +21,27 @@ class DetailViewController: UIViewController {
             self.body.text = "\(validMemo.title)\n\(validMemo.body)"
         }
 
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
+
         let deleteItem = UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(deleteMemo))
-        toolbarItems = [deleteItem]
+        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let shareItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareTapped))
+        toolbarItems = [deleteItem, space, shareItem]
+
+        self.navigationController?.toolbar.clipsToBounds = true
+        self.navigationController?.toolbar.barTintColor = .systemBackground
+        self.navigationController?.toolbar.setShadowImage(UIImage(), forToolbarPosition: .any)
+    }
+
+    @objc func shareTapped() {
+        if let memos = self.memos,
+           let index = self.index {
+            let text = "\(memos[index].title)\n\(memos[index].body)"
+            let vc = UIActivityViewController(activityItems: [text], applicationActivities: [])
+            present(vc, animated: true)
+        }
     }
 
     @objc func deleteMemo() {
@@ -53,6 +72,23 @@ class DetailViewController: UIViewController {
             self.memos?.append(memo)
         }
         self.save()
+    }
+
+    @objc func adjustForKeyboard(notification: Notification) {
+        guard let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+        let keyboardScreenEndFrame = keyboardValue.cgRectValue
+        let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
+
+        if notification.name == UIResponder.keyboardWillHideNotification {
+            body.contentInset = .zero
+        } else {
+            body.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height - view.safeAreaInsets.bottom, right: 0)
+        }
+
+        body.scrollIndicatorInsets = body.contentInset
+
+        let selectedRange = body.selectedRange
+        body.scrollRangeToVisible(selectedRange)
     }
 
     func save() {

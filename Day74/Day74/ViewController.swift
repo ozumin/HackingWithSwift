@@ -16,9 +16,16 @@ class TableViewController: UITableViewController {
         memos = [Memo(title: "aa", body: "nnn")]
         self.loadData()
 
+        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addMemo))
-        toolbarItems = [add]
-        navigationController?.isToolbarHidden = false
+        toolbarItems = [space, add]
+
+        self.navigationController?.isToolbarHidden = false
+        self.navigationController?.navigationBar.tintColor = .systemYellow
+        self.navigationController?.toolbar.tintColor = .systemYellow
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for:.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.layoutIfNeeded()
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -44,6 +51,9 @@ class TableViewController: UITableViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.toolbar.clipsToBounds = false
+        self.navigationController?.toolbar.barTintColor = .systemGray
+        self.navigationController?.toolbar.barTintColor = .systemGroupedBackground
         self.loadData()
     }
 
