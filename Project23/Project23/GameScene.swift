@@ -286,7 +286,6 @@ class GameScene: SKScene {
                 enemy.addChild(emitter)
             }
         } else {
-            print(enemyType)
             enemy = SKSpriteNode(imageNamed: "penguin")
             run(SKAction.playSoundFileNamed("launch.caf", waitForCompletion: false))
             if enemyType == 2 {
