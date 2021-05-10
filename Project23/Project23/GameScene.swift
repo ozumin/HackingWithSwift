@@ -84,7 +84,7 @@ class GameScene: SKScene {
     func createLives() {
         for i in 1 ... 3 {
             let spriteNode = SKSpriteNode(imageNamed: "sliceLife")
-            spriteNode.position = CGPoint(x: CGFloat(834 + (i * 70)), y: 720)
+            spriteNode.position = CGPoint(x: CGFloat(780 + (i * 70)), y: 720)
             addChild(spriteNode)
             livesImages.append(spriteNode)
         }
@@ -192,6 +192,18 @@ class GameScene: SKScene {
             livesImages[1].texture = SKTexture(imageNamed: "sliceLifeGone")
             livesImages[2].texture = SKTexture(imageNamed: "sliceLifeGone")
         }
+
+        for node in activeEnemies {
+            node.removeFromParent()
+        }
+
+        let gameOverNode = SKLabelNode(fontNamed: "Chalkduster")
+        gameOverNode.horizontalAlignmentMode = .left
+        gameOverNode.fontSize = 48
+        gameOverNode.text = "Game Over"
+        addChild(gameOverNode)
+
+        gameOverNode.position = CGPoint(x: 500, y: 350)
     }
 
     func playSwooshSound() {
