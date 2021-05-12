@@ -121,3 +121,13 @@ let chal2test1 = "1"
 chal2test1.isNumeric
 let chal2test2 = "no"
 chal2test2.isNumeric
+
+// Challenge 3
+
+extension String {
+    var lines: String {
+        return self.replacingOccurrences(of: " ", with: "\n")
+    }
+}
+
+input.lines
