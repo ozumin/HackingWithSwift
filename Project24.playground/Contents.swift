@@ -104,3 +104,20 @@ let chal1test1 = "pet"
 chal1test1.withPrefix("car")
 let chal1test2 = "carpet"
 chal1test2.withPrefix("car")
+
+// Challenge 2
+
+extension String {
+    var isNumeric: Bool {
+        if let _ = Double(self) {
+            return true
+        } else {
+            return false
+        }
+    }
+}
+
+let chal2test1 = "1"
+chal2test1.isNumeric
+let chal2test2 = "no"
+chal2test2.isNumeric
