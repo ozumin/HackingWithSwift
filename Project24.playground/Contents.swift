@@ -87,3 +87,20 @@ attributedString2.addAttribute(.font, value: UIFont.systemFont(ofSize: 24), rang
 attributedString2.addAttribute(.font, value: UIFont.systemFont(ofSize: 32), range: NSRange(location: 10, length: 4))
 attributedString2.addAttribute(.font, value: UIFont.systemFont(ofSize: 40), range: NSRange(location: 15, length: 6))
 // UILabel, UITextField, and more... supports attributed string!
+
+// Challenge 1
+
+extension String {
+    func withPrefix(_ prefix: String) -> String {
+        if self.hasPrefix(prefix) {
+            return self
+        } else {
+            return prefix + self
+        }
+    }
+}
+
+let chal1test1 = "pet"
+chal1test1.withPrefix("car")
+let chal1test2 = "carpet"
+chal1test2.withPrefix("car")
