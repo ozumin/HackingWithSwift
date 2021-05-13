@@ -18,6 +18,13 @@ class ViewController: UIViewController {
         5.times {
             print("Hello!")
         }
+
+        var test = ["a", "b", "c"]
+        print(test.remove("b"))
+
+        var test2 = [2, 5, 3, 7, 5, 1]
+        print(test2.remove(5))
+        print(test2.remove(8))
     }
 
 
@@ -36,5 +43,14 @@ private extension Int {
         for _ in 0..<self {
             closure()
         }
+    }
+}
+
+private extension Array where Element : Comparable {
+    mutating func remove(_ item: Element) -> Array {
+        if let index = self.firstIndex(of: item) {
+            self.remove(at: index)
+        }
+        return self
     }
 }
