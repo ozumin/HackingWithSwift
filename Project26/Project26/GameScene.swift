@@ -14,6 +14,7 @@ enum CollisionTypes: UInt32 {
     case star = 4
     case vortex = 8
     case finish = 16
+    case teleport = 32
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
@@ -32,6 +33,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
 
     var level = 1
+
+    var teleportLocationList = [CGPoint]()
     
     override func didMove(to view: SKView) {
         let background = SKSpriteNode(imageNamed: "background")
@@ -94,6 +97,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     addChild(node)
                 } else if letter == " " {
                     // this is an empty space - do nothing!
+                } else if letter == "t" {
+                    self.teleportLocationList.append(position)
+                    let node = self.initializeNode(imageName: "block", position: position, nodeName: "teleport")
+                    node.updatePhysicsBody(rectangleOf: node.size, categoryBitMask: .teleport, contactTestBitMask: .player, collisionBitMask: 0)
+                    addChild(node)
                 } else {
                     fatalError("Unknown level letter: \(letter)")
                 }
@@ -192,13 +200,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.level += 1
             self.createPlayer()
             self.loadLevel()
+        } else if node.name == "teleport" {
+            guard let targetPosition = self.teleportLocationList.filter({ $0 != node.position }).first else { return }
+            self.player.run(SKAction.move(to: targetPosition, duration: 0.0001))
         }
     }
 
     func cleanNodes() {
+        self.teleportLocationList = []
         self.player.removeFromParent()
         for node in self.children {
-            if node.name == "block" || node.name == "vortex" || node.name == "star" || node.name == "finish" {
+            if node.name == "block" || node.name == "vortex" || node.name == "star" || node.name == "finish" || node.name == "teleport" {
                 node.removeFromParent()
             }
         }
