@@ -14,6 +14,7 @@
 		830BBFE82651537300EE8E47 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 830BBFE62651537300EE8E47 /* Main.storyboard */; };
 		830BBFEA2651537900EE8E47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 830BBFE92651537900EE8E47 /* Assets.xcassets */; };
 		830BBFF2265153E500EE8E47 /* level1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 830BBFF1265153E500EE8E47 /* level1.txt */; };
+		83F0B5FB26554EB900D5D342 /* level2.txt in Resources */ = {isa = PBXBuildFile; fileRef = 83F0B5FA26554EB900D5D342 /* level2.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		830BBFE92651537900EE8E47 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		830BBFEB2651537900EE8E47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		830BBFF1265153E500EE8E47 /* level1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = level1.txt; path = "../../HackingWithSwift/Classic/project26-files/Content/level1.txt"; sourceTree = "<group>"; };
+		83F0B5FA26554EB900D5D342 /* level2.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = level2.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				830BBFE92651537900EE8E47 /* Assets.xcassets */,
 				830BBFEB2651537900EE8E47 /* Info.plist */,
 				830BBFF1265153E500EE8E47 /* level1.txt */,
+				83F0B5FA26554EB900D5D342 /* level2.txt */,
 			);
 			path = Project26;
 			sourceTree = "<group>";
@@ -127,6 +130,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83F0B5FB26554EB900D5D342 /* level2.txt in Resources */,
 				830BBFE82651537300EE8E47 /* Main.storyboard in Resources */,
 				830BBFF2265153E500EE8E47 /* level1.txt in Resources */,
 				830BBFDF2651537300EE8E47 /* GameScene.sks in Resources */,
