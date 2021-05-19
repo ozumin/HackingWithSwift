@@ -30,6 +30,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             scoreLabel.text = "Score: \(score)"
         }
     }
+
+    var level = 1
     
     override func didMove(to view: SKView) {
         let background = SKSpriteNode(imageNamed: "background")
@@ -56,7 +58,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
 
     func loadLevel() {
-        guard let levelURL = Bundle.main.url(forResource: "level1", withExtension: "txt") else {
+        guard let levelURL = Bundle.main.url(forResource: "level\(self.level)", withExtension: "txt") else {
             fatalError("Could not find level1.txt in the app bundle.")
         }
         guard let levelString = try? String(contentsOf: levelURL) else {
@@ -71,7 +73,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
                 if letter == "x" {
                     // load wall
-                    let node = self.initializeNode(imageName: "block", position: position)
+                    let node = self.initializeNode(imageName: "block", position: position, nodeName: "block")
                     node.updatePhysicsBody(rectangleOf: node.size, categoryBitMask: .wall)
                     addChild(node)
                 } else if letter == "v" {
@@ -186,6 +188,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.score += 1
         } else if node.name == "finish" {
             // next level
+            self.cleanNodes()
+            self.level += 1
+            self.createPlayer()
+            self.loadLevel()
+        }
+    }
+
+    func cleanNodes() {
+        self.player.removeFromParent()
+        for node in self.children {
+            if node.name == "block" || node.name == "vortex" || node.name == "star" || node.name == "finish" {
+                node.removeFromParent()
+            }
         }
     }
 }
