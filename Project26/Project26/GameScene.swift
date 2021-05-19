@@ -71,27 +71,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
                 if letter == "x" {
                     // load wall
-                    let node = self.makeNode(imageName: "block", position: position, categoryBitMask: .wall)
-
-                    node.physicsBody = SKPhysicsBody(rectangleOf: node.size)
+                    let node = self.initializeNode(imageName: "block", position: position)
+                    node.updatePhysicsBody(rectangleOf: node.size, categoryBitMask: .wall)
                     addChild(node)
                 } else if letter == "v" {
                     // load vortex
-                    let node = self.makeNode(imageName: "vortex", position: position, categoryBitMask: .vortex, contactTestBitMask: .player, collisionBitMask: 0)
-
+                    let node = self.initializeNode(imageName: "vortex", position: position, nodeName: "vortex")
+                    node.updatePhysicsBody(circleOfRadius: node.size.width / 2, categoryBitMask: .vortex, contactTestBitMask: .player, collisionBitMask: 0)
                     node.run(SKAction.repeatForever(SKAction.rotate(byAngle: .pi, duration: 1)))
-                    node.physicsBody = SKPhysicsBody(circleOfRadius: node.size.width / 2)
                     addChild(node)
                 } else if letter == "s" {
                     // load star
-                    let node = self.makeNode(imageName: "star", position: position, categoryBitMask: .star, contactTestBitMask: .player, collisionBitMask: 0)
-
-                    node.physicsBody = SKPhysicsBody(circleOfRadius: node.size.width / 2)
+                    let node = self.initializeNode(imageName: "star", position: position, nodeName: "star")
+                    node.updatePhysicsBody(circleOfRadius: node.size.width / 2, categoryBitMask: .star, contactTestBitMask: .player, collisionBitMask: 0)
                     addChild(node)
                 } else if letter == "f" {
                     // load finish point
-                    let node = self.makeNode(imageName: "finish", position: position, categoryBitMask: .finish, contactTestBitMask: .player, collisionBitMask: 0)
-                    node.physicsBody = SKPhysicsBody(circleOfRadius: node.size.width / 2)
+                    let node = self.initializeNode(imageName: "finish", position: position, nodeName: "finish")
+                    node.updatePhysicsBody(circleOfRadius: node.size.width / 2, categoryBitMask: .finish, contactTestBitMask: .player, collisionBitMask: 0)
                     addChild(node)
                 } else if letter == " " {
                     // this is an empty space - do nothing!
@@ -102,16 +99,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
 
-    func makeNode(imageName: String, position: CGPoint, categoryBitMask: CollisionTypes, contactTestBitMask: CollisionTypes? = nil, collisionBitMask: UInt32? = nil) -> SKSpriteNode {
+    func initializeNode(imageName: String, position: CGPoint, nodeName: String? = nil) -> SKSpriteNode {
         let node = SKSpriteNode(imageNamed: imageName)
         node.position = position
-        node.physicsBody?.categoryBitMask = categoryBitMask.rawValue
-        node.physicsBody?.isDynamic = false
-        if let contactTestBitMask = contactTestBitMask {
-            node.physicsBody?.contactTestBitMask = contactTestBitMask.rawValue
-        }
-        if let collisionBitMask = collisionBitMask {
-            node.physicsBody?.collisionBitMask = collisionBitMask
+        if let nodeName = nodeName {
+            node.name = nodeName
         }
         return node
     }
@@ -194,6 +186,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.score += 1
         } else if node.name == "finish" {
             // next level
+        }
+    }
+}
+
+extension SKSpriteNode {
+    func updatePhysicsBody(rectangleOf: CGSize? = nil, circleOfRadius: CGFloat? = nil, categoryBitMask: CollisionTypes, contactTestBitMask: CollisionTypes? = nil, collisionBitMask: UInt32? = nil) {
+        if let rectangleOf = rectangleOf {
+            self.physicsBody = SKPhysicsBody(rectangleOf: rectangleOf)
+        }
+        if let circleOfRadius = circleOfRadius {
+            self.physicsBody = SKPhysicsBody(circleOfRadius: circleOfRadius)
+        }
+        self.physicsBody?.categoryBitMask = categoryBitMask.rawValue
+        self.physicsBody?.isDynamic = false
+        if let contactTestBitMask = contactTestBitMask {
+            self.physicsBody?.contactTestBitMask = contactTestBitMask.rawValue
+        }
+        if let collisionBitMask = collisionBitMask {
+            self.physicsBody?.collisionBitMask = collisionBitMask
         }
     }
 }
