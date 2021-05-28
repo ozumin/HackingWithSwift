@@ -5,15 +5,61 @@
 //  Created by Mizuo Nagayama on 2021/03/19.
 //
 
+import LocalAuthentication
 import UIKit
 
 class ViewController: UICollectionViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    var savedPeople = [Person]()
     var people = [Person]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewPerson))
+        navigationItem.leftBarButtonItem?.isEnabled = false
+
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(hidePeople), name: UIApplication.willResignActiveNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(authenticate), name: UIApplication.willEnterForegroundNotification, object: nil)
+
+        self.authenticate()
+    }
+
+    @objc func authenticate() {
+        let context = LAContext()
+        var error: NSError?
+
+        context.localizedFallbackTitle = ""
+
+        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+            let reason = "Identify yourself!"
+
+            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { [weak self] success, authenticationError in
+                DispatchQueue.main.async {
+                    if success {
+                        self?.showPeople()
+                    } else {
+                        self?.hidePeople()
+                    }
+                }
+            }
+        } else {
+            let ac = UIAlertController(title: "Biometry unavailable", message: "Your device is not configured for biometric authentication.", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            self.present(ac, animated: true)
+        }
+    }
+
+    func showPeople() {
+        navigationItem.leftBarButtonItem?.isEnabled = true
+        self.people = self.savedPeople
+        self.collectionView.reloadData()
+    }
+
+    @objc func hidePeople() {
+        self.people = [Person]()
+        self.collectionView.reloadData()
+        navigationItem.leftBarButtonItem?.isEnabled = false
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -57,7 +103,8 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
         }
 
         let person = Person(name: "Unknown", image: imageName)
-        people.append(person)
+        self.savedPeople.append(person)
+        self.people = self.savedPeople
         collectionView.reloadData()
 
         dismiss(animated: true)
