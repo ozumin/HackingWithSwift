@@ -16,6 +16,8 @@ class ViewController: UIViewController {
 
         title = "Nothing to see here"
 
+        KeychainWrapper.standard.set("password", forKey: "password")
+
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
@@ -26,6 +28,8 @@ class ViewController: UIViewController {
         let context = LAContext()
         var error: NSError?
 
+        context.localizedFallbackTitle = "Enter Password"
+
         if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
             let reason = "Identify yourself!"
 
@@ -33,7 +37,19 @@ class ViewController: UIViewController {
                 DispatchQueue.main.async {
                     if success {
                         self?.unlockSecretMessage()
-                    } // else alert controller popups by default
+                    } else {
+                        let ac = UIAlertController(title: "Enter password", message: nil, preferredStyle: .alert)
+                        ac.addTextField()
+                        ac.addAction(UIAlertAction(title: "Enter", style: .default) { [weak self, weak ac] action in
+                            guard let text = ac?.textFields?[0].text,
+                                  let password = KeychainWrapper.standard.string(forKey: "password")
+                            else { return }
+                            if text == password {
+                                self?.unlockSecretMessage()
+                            }
+                        })
+                        self?.present(ac, animated: true)
+                    }
                 }
             }
         } else {
@@ -67,6 +83,8 @@ class ViewController: UIViewController {
         title = "Secret Stuff!"
 
         secret.text = KeychainWrapper.standard.string(forKey: "SecretMessage") ?? ""
+
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(saveSecretMessage))
     }
 
     @objc func saveSecretMessage() {
@@ -76,6 +94,8 @@ class ViewController: UIViewController {
         secret.resignFirstResponder()
         secret.isHidden = true
         title = "Nothing to see here"
+
+        navigationItem.rightBarButtonItem = nil
     }
 }
 
