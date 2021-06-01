@@ -34,6 +34,9 @@ class GameViewController: UIViewController {
 
                 self.currentGame = scene as? GameScene
                 self.currentGame?.viewController = self
+                if let currentPlayer = currentGame?.currentPlayer {
+                    self.activatePlayer(number: currentPlayer)
+                }
             }
             
             view.ignoresSiblingOrder = true
