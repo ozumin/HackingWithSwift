@@ -23,6 +23,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var banana: SKSpriteNode!
 
     var currentPlayer = 1
+
+    var player1Score = 0
+    var player2Score = 0
     
     override func didMove(to view: SKView) {
         backgroundColor = UIColor(hue: 0.669, saturation: 0.99, brightness: 0.67, alpha: 1)
@@ -177,16 +180,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.removeFromParent()
         banana.removeFromParent()
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            let newGame = GameScene(size: self.size)
-            newGame.viewController = self.viewController
-            self.viewController?.currentGame = newGame
+        if player == player1 {
+            player2Score += 1
+        } else {
+            player1Score += 1
+        }
 
-            self.changePlayer()
-            newGame.currentPlayer = self.currentPlayer
+        if player2Score < 3 && player1Score < 3 {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                let newGame = GameScene(size: self.size)
+                newGame.viewController = self.viewController
+                self.viewController?.currentGame = newGame
 
-            let transition = SKTransition.doorway(withDuration: 1.5)
-            self.view?.presentScene(newGame, transition: transition)
+                self.changePlayer()
+                newGame.currentPlayer = self.currentPlayer
+                newGame.player1Score = self.player1Score
+                newGame.player2Score = self.player2Score
+
+                let transition = SKTransition.doorway(withDuration: 1.5)
+                self.view?.presentScene(newGame, transition: transition)
+            }
         }
     }
 
