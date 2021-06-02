@@ -58,6 +58,12 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wind" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sia-6O-DEt">
+                                <rect key="frame" x="964.5" y="110" width="40" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -70,11 +76,13 @@
                             <constraint firstItem="Un2-mF-qTa" firstAttribute="centerY" secondItem="F4E-9j-who" secondAttribute="centerY" id="LLK-yd-44C"/>
                             <constraint firstItem="F4E-9j-who" firstAttribute="centerY" secondItem="iUZ-Et-v7V" secondAttribute="centerY" id="Oey-JQ-sAn"/>
                             <constraint firstItem="fMz-cG-uxi" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" constant="30" id="Srq-58-PPf"/>
+                            <constraint firstItem="sia-6O-DEt" firstAttribute="centerY" secondItem="7KX-0Q-PoV" secondAttribute="centerY" id="U8B-iX-Tc7"/>
                             <constraint firstItem="7KX-0Q-PoV" firstAttribute="top" secondItem="iUZ-Et-v7V" secondAttribute="bottom" constant="30" id="USk-vx-szY"/>
                             <constraint firstItem="Un2-mF-qTa" firstAttribute="leading" secondItem="F4E-9j-who" secondAttribute="trailing" constant="5" id="Vap-di-Jsw"/>
                             <constraint firstItem="iUZ-Et-v7V" firstAttribute="leading" secondItem="fMz-cG-uxi" secondAttribute="trailing" constant="100" id="X0m-bD-zRH"/>
                             <constraint firstItem="7KX-0Q-PoV" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" constant="370" id="dgp-1F-gKS"/>
                             <constraint firstItem="iUZ-Et-v7V" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="MCB-HR-R9c" secondAttribute="trailing" constant="8" symbolic="YES" id="dxn-8L-QrG"/>
+                            <constraint firstItem="sia-6O-DEt" firstAttribute="centerX" secondItem="Un2-mF-qTa" secondAttribute="centerX" id="hCl-QG-mMt"/>
                             <constraint firstItem="4qk-I5-YsI" firstAttribute="trailing" secondItem="7KX-0Q-PoV" secondAttribute="trailing" constant="525" id="igU-u7-agc"/>
                             <constraint firstItem="fMz-cG-uxi" firstAttribute="top" secondItem="iUZ-Et-v7V" secondAttribute="top" id="spe-kB-YzP"/>
                             <constraint firstItem="MCB-HR-R9c" firstAttribute="leading" secondItem="fMz-cG-uxi" secondAttribute="trailing" constant="5" id="yaB-IG-uyH"/>
@@ -87,6 +95,7 @@
                         <outlet property="playerLabel" destination="7KX-0Q-PoV" id="b5w-u9-2YS"/>
                         <outlet property="velocityLabel" destination="F4E-9j-who" id="gHy-Jp-3s0"/>
                         <outlet property="velocitySlider" destination="iUZ-Et-v7V" id="RZh-0e-dKx"/>
+                        <outlet property="windLabel" destination="sia-6O-DEt" id="c87-7A-K9W"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>

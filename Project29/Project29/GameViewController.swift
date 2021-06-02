@@ -18,6 +18,7 @@ class GameViewController: UIViewController {
     @IBOutlet var velocityLabel: UILabel!
     @IBOutlet var launchButton: UIButton!
     @IBOutlet var playerLabel: UILabel!
+    @IBOutlet var windLabel: UILabel!
 
 
     override func viewDidLoad() {
@@ -37,6 +38,7 @@ class GameViewController: UIViewController {
                 if let currentPlayer = currentGame?.currentPlayer {
                     self.activatePlayer(number: currentPlayer)
                 }
+                self.currentGame?.setWind()
             }
             
             view.ignoresSiblingOrder = true

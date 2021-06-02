@@ -35,6 +35,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         physicsWorld.contactDelegate = self
     }
 
+    func setWind() {
+        let dX = Double.random(in: -1.0 ... 1.0)
+        let dY = Double.random(in: -9.9 ... -9.7)
+        self.viewController?.windLabel.text = "X: \(dX), Y: \(dY)"
+        physicsWorld.gravity = CGVector(dx: dX, dy: dY)
+    }
+
     func createBuildings() {
         var currentX: CGFloat = -15
 
@@ -196,6 +203,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 newGame.currentPlayer = self.currentPlayer
                 newGame.player1Score = self.player1Score
                 newGame.player2Score = self.player2Score
+
+                newGame.setWind()
 
                 let transition = SKTransition.doorway(withDuration: 1.5)
                 self.view?.presentScene(newGame, transition: transition)
