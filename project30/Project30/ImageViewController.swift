@@ -60,8 +60,9 @@ class ImageViewController: UIViewController {
         super.viewDidLoad()
 
         self.title = image.replacingOccurrences(of: "-Large.jpg", with: "")
-        if let path = Bundle.main.path(forResource: image, ofType: nil),
-           let original = UIImage(contentsOfFile: path) {
+
+        if let path = owner?.getDocumentsDirectory().appendingPathComponent(self.image),
+           let original = UIImage(contentsOfFile: path.path) {
 
             let renderer = UIGraphicsImageRenderer(size: original.size)
 

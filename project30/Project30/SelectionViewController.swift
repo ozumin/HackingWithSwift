@@ -29,6 +29,7 @@ class SelectionViewController: UITableViewController {
             for item in tempItems {
                 if item.range(of: "Large") != nil {
                     items.append(item)
+                    self.saveImageCache(item)
                 }
             }
         }
@@ -61,10 +62,9 @@ class SelectionViewController: UITableViewController {
 
 		// find the image for this cell, and load its thumbnail
 		let currentImage = items[indexPath.row % items.count]
-		let imageRootName = currentImage.replacingOccurrences(of: "Large", with: "Thumb")
-        if let path = Bundle.main.path(forResource: imageRootName, ofType: nil),
-           let original = UIImage(contentsOfFile: path) {
+        let path = getDocumentsDirectory().appendingPathComponent(currentImage)
 
+        if let original = UIImage(contentsOfFile: path.path) {
             let renderRect = CGRect(origin: .zero, size: CGSize(width: 90, height: 90))
             let renderer = UIGraphicsImageRenderer(size: renderRect.size)
 
@@ -101,4 +101,24 @@ class SelectionViewController: UITableViewController {
 
 		navigationController!.pushViewController(vc, animated: true)
 	}
+
+    func saveImageCache(_ imageName: String) {
+        let cachePath = getDocumentsDirectory().appendingPathComponent(imageName)
+
+        let imageRootName = imageName.replacingOccurrences(of: "Large", with: "Thumb")
+        if let path = Bundle.main.path(forResource: imageRootName, ofType: nil),
+           let original = UIImage(contentsOfFile: path) {
+
+            let rect = CGRect(x: 0, y: 0, width: 100, height: 100)
+            original.draw(in: rect)
+            if let jpegData = original.jpegData(compressionQuality: 1) {
+                try? jpegData.write(to: cachePath)
+            }
+        }
+    }
+
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
 }
