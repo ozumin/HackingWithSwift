@@ -12,6 +12,7 @@
 		8302B88A266D0DB800304166 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8302B889266D0DB800304166 /* ViewController.swift */; };
 		8302B88F266D0DB800304166 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8302B88E266D0DB800304166 /* Assets.xcassets */; };
 		8302B892266D0DB800304166 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8302B890266D0DB800304166 /* LaunchScreen.storyboard */; };
+		8302B89A266E581400304166 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8302B899266E581400304166 /* UIView+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		8302B88E266D0DB800304166 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8302B891266D0DB800304166 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8302B893266D0DB800304166 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8302B899266E581400304166 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 				8302B885266D0DB800304166 /* AppDelegate.swift */,
 				8302B887266D0DB800304166 /* SceneDelegate.swift */,
 				8302B889266D0DB800304166 /* ViewController.swift */,
+				8302B899266E581400304166 /* UIView+Extensions.swift */,
 				8302B88E266D0DB800304166 /* Assets.xcassets */,
 				8302B890266D0DB800304166 /* LaunchScreen.storyboard */,
 				8302B893266D0DB800304166 /* Info.plist */,
@@ -135,6 +138,7 @@
 			files = (
 				8302B88A266D0DB800304166 /* ViewController.swift in Sources */,
 				8302B886266D0DB800304166 /* AppDelegate.swift in Sources */,
+				8302B89A266E581400304166 /* UIView+Extensions.swift in Sources */,
 				8302B888266D0DB800304166 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
